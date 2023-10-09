@@ -10,18 +10,10 @@ trait MetodosAsilo {
 	) {}
 
 	function noEsElegibleParaDiscapacidad(): bool {
-		if ($this->antiguedad < 2) {
-			return true;
-		}
-
-		if ($this->mesesDeshabilitado > 12) {
-			return true;
-		}
-
-		if ($this->esTiempoParcial) {
-			return true;
-		}
-
-		return false;
+		return (
+			$this->antiguedad < 2
+			|| $this->mesesDeshabilitado > 12
+			|| $this->esTiempoParcial
+		);
 	}
 }
