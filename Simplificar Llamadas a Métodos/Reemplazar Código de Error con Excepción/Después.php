@@ -9,7 +9,8 @@ class ExcepcionDeBalance extends Exception {}
 class Cuenta {
 	function __construct(private int $balance) {}
 
-	function retirar(int $cantidad) {
+	/** @throws ExcepcionDeBalance */
+	function retirar(int $cantidad): void {
 		if ($cantidad > $this->balance) {
 			throw new ExcepcionDeBalance('Balance insuficiente');
 		}
@@ -21,7 +22,7 @@ class Cuenta {
 $cuenta = new Cuenta(50);
 
 try {
-	$resultado = $cuenta->retirar(52);
+	$cuenta->retirar(52);
 	echo "Saldo retirado exitósamente.\n";
 } catch (ExcepcionDeBalance $error) {
 	echo "{$error->getMessage()}\n";

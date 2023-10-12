@@ -5,7 +5,8 @@ namespace ReemplazarCodigoDeErrorConExcepcion\Antes;
 class Cuenta {
 	function __construct(private int $balance) {}
 
-	function retirar(int $cantidad) {
+	/** @return -1|0 */
+	function retirar(int $cantidad): int {
 		if ($cantidad > $this->balance) {
 			return -1;
 		}
